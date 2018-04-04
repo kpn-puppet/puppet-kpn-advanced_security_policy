@@ -1,0 +1,33 @@
+{
+  "name": "kpn-advanced_security_policy",
+  "version": "2.1.1",
+  "author": "kpn",
+  "summary": "This module sets Advanced Security Policy settings on Windows.",
+  "license": "Apache-2.0",
+  "source": "https://github.com/kpn-puppet/puppet-kpn-advanced_security_policy",
+  "project_page": "https://github.com/kpn-puppet/puppet-kpn-advanced_security_policy",
+  "issues_url": "https://github.com/kpn-puppet/puppet-kpn-advanced_security_policy/issues",
+  "dependencies": [],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "windows",
+      "operatingsystemrelease": [
+        "2008 R2",
+        "2012 R2",
+        "2016"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.7.0 < 6.0.0"
+    }
+  ],
+  "kpn_quality_label": "A",
+  "kpn_module_owner": "Product Owner Platforms",
+  "kpn_module_support": "Puppet Development Team",
+  "pdk-version": "1.4.1",
+  "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
+  "template-ref": "1.4.1-0-g52adbbb"
+}
