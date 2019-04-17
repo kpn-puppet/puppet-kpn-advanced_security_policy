@@ -71,7 +71,7 @@ Description: This is the value to be set for the policy. This can be 'enabled', 
     policy_value => '255',
   }
 
-  advanced_security_policy {Configuration of wireless settings using Windows Connect Now':
+  advanced_security_policy {'Configuration of wireless settings using Windows Connect Now':
     policy_value => 'disabled'
   }
 
