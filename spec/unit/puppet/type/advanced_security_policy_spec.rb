@@ -5,7 +5,7 @@ require 'spec_helper'
 type_class = Puppet::Type.type(:advanced_security_policy)
 
 EXAMPLE = {
-  name:   'Application: Specify the maximum log file size (KB)',
+  name: 'Application: Specify the maximum log file size (KB)',
   action: 'DWORD:0001',
 }.freeze
 
