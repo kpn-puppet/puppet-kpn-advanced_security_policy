@@ -5,8 +5,9 @@
 require 'puppet_x/asp/security_policy'
 
 Puppet::Type.type(:advanced_security_policy).provide(:lgpo) do
-  TEMP_FILE     = 'C:\\windows\\temp\\lgpotemp.txt'
-  REGISTRY_FILE = 'C:\\Windows\\System32\\GroupPolicy\\Machine\\Registry.pol'
+  TEMP_FILE = 'C:\\windows\\temp\\lgpotemp.txt'
+  REGISTRY_FILE_MACHINE = 'C:\\Windows\\System32\\GroupPolicy\\Machine\\Registry.pol'
+  REGISTRY_FILE_USER = 'C:\\Windows\\System32\\GroupPolicy\\User\\Registry.pol'
 
   confine    osfamily: :windows
   defaultfor osfamily: :windows
@@ -28,7 +29,8 @@ Puppet::Type.type(:advanced_security_policy).provide(:lgpo) do
     if policy_hash[:data_type] == 'boolean'
       policy_value = (resource[:policy_value] == 'enabled') ? policy_hash[:enabled_value] : policy_hash[:disabled_value]
     elsif !resource[:policy_value].nil?
-      policy_value = resource[:policy_value].downcase
+      # policy_value = resource[:policy_value].downcase
+      policy_value = resource[:policy_value]
     end
 
     configuration = policy_hash[:configuration]
@@ -52,8 +54,12 @@ Puppet::Type.type(:advanced_security_policy).provide(:lgpo) do
     out_file.close
   end
 
-  def self.registry_file_exists
-    File.file? REGISTRY_FILE
+  def self.registry_file_exists_machine
+    File.file? REGISTRY_FILE_MACHINE
+  end
+
+  def self.registry_file_exists_user
+    File.file? REGISTRY_FILE_USER
   end
 
   def exists?
@@ -72,13 +78,14 @@ Puppet::Type.type(:advanced_security_policy).provide(:lgpo) do
     @resource[:action]       = 'DELETE'
   end
 
-  def self.configuration_is_computer(action, policy_values)
+  def self.configuration_is(action, policy_values)
     if ['DELETE', 'SZ:'].include?(action)
       ensure_value = :absent
       policy_setting = action
     else
       ensure_value = :present
-      policy_setting = (policy_values[:data_type] == 'boolean') ? policy_datatype_boolean(action, policy_values[:enabled_value]) : action.split(':')[1].downcase
+      # policy_setting = (policy_values[:data_type] == 'boolean') ? policy_datatype_boolean(action, policy_values[:enabled_value]) : action.split(':')[1].downcase
+      policy_setting = (policy_values[:data_type] == 'boolean') ? policy_datatype_boolean(action, policy_values[:enabled_value]) : action.split(':')[1]
     end
 
     [ensure_value, policy_setting]
@@ -91,8 +98,8 @@ Puppet::Type.type(:advanced_security_policy).provide(:lgpo) do
   def self.instances
     instances = []
 
-    if registry_file_exists
-      categories = securitypol('/parse', '/q', '/m', REGISTRY_FILE)
+    if registry_file_exists_machine
+      categories = securitypol('/parse', '/q', '/m', REGISTRY_FILE_MACHINE)
       line_array = categories.split("\n").drop(4)
       entries    = line_array.each_slice(5)
 
@@ -100,28 +107,61 @@ Puppet::Type.type(:advanced_security_policy).provide(:lgpo) do
         configuration = entry_array[0]
 
         next unless configuration == 'Computer'
+
         registry_key   = entry_array[1]
         value_name     = entry_array[2]
-        action         = entry_array[3].upcase
+        # action         = entry_array[3].upcase
+        action         = entry_array[3]
         registry_value = "#{registry_key}\\#{value_name}"
         policy_desc, policy_values = AdvancedSecurityPolicy.find_mapping_from_policy_name(registry_value)
 
         next if policy_desc.nil?
-        ensure_value, policy_setting = configuration_is_computer(action, policy_values)
+
+        ensure_value, policy_setting = configuration_is(action, policy_values)
         policy_hash = {
-          name:         policy_desc,
-          ensure:       ensure_value,
+          name: policy_desc,
+          ensure: ensure_value,
           policy_value: policy_setting,
         }
         instances << new(policy_hash)
       end
     end
+
+    if registry_file_exists_user
+      categories = securitypol('/parse', '/q', '/u', REGISTRY_FILE_USER)
+      line_array = categories.split("\n").drop(4)
+      entries    = line_array.each_slice(5)
+
+      entries.map do |entry_array|
+        configuration = entry_array[0]
+
+        next unless configuration == 'User'
+
+        registry_key   = entry_array[1]
+        value_name     = entry_array[2]
+        # action         = entry_array[3].upcase
+        action         = entry_array[3]
+        registry_value = "#{registry_key}\\#{value_name}"
+        policy_desc, policy_values = AdvancedSecurityPolicy.find_mapping_from_policy_name(registry_value)
+
+        next if policy_desc.nil?
+
+        ensure_value, policy_setting = configuration_is(action, policy_values)
+        policy_hash = {
+          name: policy_desc,
+          ensure: ensure_value,
+          policy_value: policy_setting,
+        }
+        instances << new(policy_hash)
+      end
+    end
+
     instances
   end
 
   def self.prefetch(resources)
     policies = instances
-    resources.keys.each do |name|
+    resources.each_key do |name|
       if (provider = policies.find { |policy| policy.name == name })
         resources[name].provider = provider
       end

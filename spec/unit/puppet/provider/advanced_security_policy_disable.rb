@@ -10,12 +10,12 @@ describe provider_class do
 
   let(:resource) do
     provider_resource.new(
-      name:          'Prohibit installation and configuration of Network Bridge on your DNS domain network',
-      ensure:        'present',
+      name: 'Prohibit installation and configuration of Network Bridge on your DNS domain network',
+      ensure: 'present',
       configuration: 'Computer',
-      registry_key:  'Software\Policies\Microsoft\Windows\Network Connections',
-      value_name:    'NC_AllowNetBridge_NLA',
-      policy_value:  '1',
+      registry_key: 'Software\Policies\Microsoft\Windows\Network Connections',
+      value_name: 'NC_AllowNetBridge_NLA',
+      policy_value: '1',
     )
   end
 
@@ -47,8 +47,8 @@ DWORD:32768'
         provider.class.stubs(registry_file_exists: true)
         provider.class.expects(:new)
                 .with(
-                  name:         'Application: Specify the maximum log file size (KB)',
-                  ensure:       :present,
+                  name: 'Application: Specify the maximum log file size (KB)',
+                  ensure: :present,
                   policy_value: '32768',
                 )
         provider.class.instances
@@ -63,9 +63,9 @@ DWORD:32768'
         provider.instance_variable_set(
           :@property_flush,
           configuration: 'Computer',
-          registry_key:  'Software\\Policies\\Microsoft\\Windows\\Network Connections',
-          value_name:    'NC_AllowNetBridge_NLA',
-          action:        'DWORD:1',
+          registry_key: 'Software\\Policies\\Microsoft\\Windows\\Network Connections',
+          value_name: 'NC_AllowNetBridge_NLA',
+          action: 'DWORD:1',
         )
       end
 

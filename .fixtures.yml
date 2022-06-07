@@ -1,3 +1,5 @@
 fixtures:
+  repositories:
+    scheduled_task: 'https://github.com/puppetlabs/puppetlabs-scheduled_task'
   symlinks:
     advanced_security_policy: '#{source_dir}'
