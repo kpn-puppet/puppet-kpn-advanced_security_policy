@@ -1,3 +1,23 @@
+2023-11-20 Release 3.1.0
+- Add new policies:
+  - 'Configure RPC packet level privacy setting for incoming connections'
+  - 'Configure NetBIOS settings'
+  - 'Configure Redirection Guard'
+  - 'Configure RPC connection settings: Protocol to use for outgoing RPC connections'
+  - 'Configure RPC listener settings: Protocols to allow for incoming RPC connections'
+  - 'Configure RPC listener settings: Authentication protocol to use for incoming RPC connections'
+  - 'Configure RPC over TCP port'
+  - 'Manage processing of Queue-specific files'
+  - 'Allow Custom SSPs and APs to be loaded into LSASS'
+  - 'Turn off cloud optimized content'
+  - 'Enable App Installer'
+  - 'Enable App Installer Experimental Features'
+  - 'Enable App Installer Hash Override'
+  - 'Enable App Installer ms-appinstaller protocol'
+  - 'Do not allow WebAuthn redirection'
+  - 'Allow search highlights'
+  - 'Enable MPR notifications for the system'
+
 2022-12-01 Release 3.0.1
 - Add Allow UI Automation redirection
 - Add Do not allow location redirection
