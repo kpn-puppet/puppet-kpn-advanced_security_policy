@@ -1,6 +1,6 @@
 # advanced_security_policy
 
-#### Table of Contents
+## Table of Contents
 
 - [advanced_security_policy](#advanced_security_policy)
       - [Table of Contents](#table-of-contents)
@@ -24,9 +24,11 @@
   - [Development](#development)
 
 ## Overview
+
 This module sets and enforces the advanced security policies for windows.
 
 ## Module Description
+
 This module uses LGPO.exe (v2.2) to configure the advanced security policies on Windows.
 LGPO.exe is a command-line utility that is designed to help automate management of
 Local Group Policy. It can import and apply settings from Registry Policy (Registry.pol)
@@ -38,18 +40,22 @@ files, security templates, Advanced Auditing backup files, as well as from forma
 ### Setup Requirements
 
 This module requires:
+
 - ADMX and ADML files with the policy settings to be set (in `C:\Windows\PolicyDefinitions`)
 - LGPO.exe needs to be installed in `C:\Windows\System32` (Add the following code)
+
   ```puppet
     include advanced_security_policy
   ```
 
 ### What advanced_security_policy affects
+
 - Advanced security policies.
 - `C:\Windows\System32\GroupPolicy\Machine\Registry.pol`
 - A backup is made of `C:\Windows\System32\GroupPolicy\Machine\Registry.pol` and is placed in `C:\Management\advanced_security\Registry.pol`
 
 ### Beginning with advanced_security_policy
+
 To start using advanced_security_policy,
 simply include the module and add the defined type statements in your profile.
 Then configure the policies you want to set. (for example in hiera)
@@ -61,17 +67,21 @@ Then configure the policies you want to set. (for example in hiera)
 ### Parameters
 
 #### policy(resource) name (required)
+
 Type: 'String'
 Default: '$title'
 Values: Any valid advanced security subcategory
 Description: The policy name matches the name in the policy editor
 
 #### ensure
+
 Type: 'String'
 Default: 'present'
 Values: 'present' or 'absent'
 Description: When a policy is set, ensure will be 'present'. If a policy is to be set as 'not configured' then ensure must be set to 'absent'.
+
 #### policy_value
+
 Type: 'String'
 Values: 'enabled', 'disabled' or a value
 Description: This is the value to be set for the policy. This can be 'enabled', 'disabled' or a value to be set.
@@ -79,6 +89,7 @@ Description: This is the value to be set for the policy. This can be 'enabled', 
 ### Examples
 
 #### Example: Setting multiple security policies
+
 ```puppet
   advanced_security_policy {'Turn off Autoplay':
     policy_value => '255',
@@ -104,10 +115,11 @@ Description: This is the value to be set for the policy. This can be 'enabled', 
 - advanced_security_policy
 
 ### Provider
+
 - securitypolicy
 
-
 ## Limitations
+
 This is where you list OS compatibility, version compatibility, etc.
 
 This module works on:
@@ -125,6 +137,7 @@ You can contribute by submitting issues, providing feedback and joining the disc
 Go to: `https://github.com/kpn-puppet/puppet-kpn-advanced_security_policy`
 
 If you want to fix bugs, add new features etc:
+
 - Fork it
 - Create a feature branch ( git checkout -b my-new-feature )
 - Apply your changes and update rspec tests

@@ -1,5 +1,10 @@
 # Changelog for Advanced Security Policy
 
+2025-01-23 Release 4.1.0
+
+- update module to pe8 and pdk version to 3.4.0
+- fix init and rspec for pe8
+
 2024-12-10 4.0.1
 
 - add policy Do not allow client printer redirection
