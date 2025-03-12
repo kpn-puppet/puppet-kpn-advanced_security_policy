@@ -13,8 +13,6 @@ require 'spec_helper_local' if File.file?(File.join(File.dirname(__FILE__), 'spe
 include RspecPuppetFacts
 # rubocop:enable Style/MixinUsage
 
-add_custom_fact :domainrole, 'Standalone Server'
-
 default_facts = {
   puppetversion: Puppet.version,
   facterversion: Facter.version,

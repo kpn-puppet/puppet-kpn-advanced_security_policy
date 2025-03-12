@@ -1,6 +1,6 @@
 {
   "name": "kpn-advanced_security_policy",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "author": "kpn",
   "summary": "This module sets Advanced Security Policy settings on Windows.",
   "license": "proprietary",
@@ -17,8 +17,6 @@
     {
       "operatingsystem": "windows",
       "operatingsystemrelease": [
-        "2012",
-        "2012 R2",
         "2016",
         "2019",
         "2022"
@@ -38,7 +36,5 @@
     "windows",
     "advanced_security_policy"
   ],
-  "pdk-version": "3.0.0",
-  "template-url": "ssh://git@github.tooling.kpn.org/team-puppet-modulebouw/pdk_templates#main",
-  "template-ref": "heads/main-0-g75ee08a"
+  "pdk-version": "3.4.0"
 }

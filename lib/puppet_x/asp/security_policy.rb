@@ -1367,6 +1367,16 @@ class AdvancedSecurityPolicy
         enabled_value: '1',
         disabled_value: '0',
       },
+      'Do not allow client printer redirection' => {
+        name: 'Software\Policies\Microsoft\Windows NT\Terminal Services\fDisableCpm',
+        configuration: 'Computer',
+        registry_key: 'SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services',
+        value_name: 'fDisableCpm',
+        reg_type: 'DWORD',
+        data_type: 'boolean',
+        enabled_value: '1',
+        disabled_value: '0',
+      },
       'Restrict Remote Desktop Services users to a single Remote Desktop Services session' => {
         name: 'Software\Policies\Microsoft\Windows NT\Terminal Services\fSingleSessionPerUser',
         configuration: 'Computer',
@@ -2315,14 +2325,14 @@ class AdvancedSecurityPolicy
         enabled_value: '2',
         disabled_value: '0',
       },
-      'Configure Redirection Guard' => {	
+      'Configure Redirection Guard' => {
         name: 'Software\Policies\Microsoft\Windows NT\Printers\RedirectionGuardPolicy',
         configuration: 'Computer',
         registry_key: 'Software\Policies\Microsoft\Windows NT\Printers',
         value_name: 'RedirectionGuardPolicy',
         reg_type: 'DWORD',
         data_type: 'boolean',
-        enabled_value: '1', 
+        enabled_value: '1',
         disabled_value: '0',
       },
       'Configure RPC connection settings: Protocol to use for outgoing RPC connections' => {

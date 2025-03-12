@@ -3,15 +3,14 @@
 require 'spec_helper'
 
 describe 'advanced_security_policy', if: RUBY_PLATFORM =~ %r{cygwin|mswin|mingw|bccwin|wince|emx} do
-  def global_facts(facts, _os)
-    facts.merge(os: { family: 'windows', release: { major: facts[:os]['release']['major'] }, windows: { system32: 'C:/Windows/system32' } })
-  end
-
   on_supported_os.each do |os, facts|
-    describe "on #{os}" do
-      let(:facts) { global_facts(facts, os) }
+    context "on supported #{os}" do
+      let(:facts) { facts.merge(system32: 'C:/Windows/System32') }
 
-      it { is_expected.to compile }
+      it 'compiles the catalog without dependency cycles' do
+        expect { is_expected.to compile }.not_to raise_error
+      end
+
       it { is_expected.to contain_class('advanced_security_policy') }
       it { is_expected.to contain_file('c:/Management/advanced_security') }
       it { is_expected.to contain_exec('backup registry.pol') }

@@ -1,5 +1,9 @@
 # Changelog for Advanced Security Policy
 
+2024-12-10 4.0.1
+
+- add policy Do not allow client printer redirection
+
 2024-01-08 Release 4.0.0
 
 - Convert code to PDK
