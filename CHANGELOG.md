@@ -1,3 +1,7 @@
+2022-12-01 Release 3.0.1
+- Add Allow UI Automation redirection
+- Add Do not allow location redirection
+
 2022-05-12 Release 3.0.0
 - add User configuration policies
 - update 'Minimize the number of simultaneous connections to the Internet or a Windows Domain' policy 
