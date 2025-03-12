@@ -9,7 +9,7 @@ EXAMPLE = {
   action: 'DWORD:0001',
 }.freeze
 
-describe type_class do
+describe type_class, if: RUBY_PLATFORM =~ %r{cygwin|mswin|mingw|bccwin|wince|emx} do
   let :params do
     [
       :policy_key,

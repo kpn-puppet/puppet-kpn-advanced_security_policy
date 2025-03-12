@@ -1,19 +1,44 @@
 {
   "name": "kpn-advanced_security_policy",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "author": "kpn",
   "summary": "This module sets Advanced Security Policy settings on Windows.",
   "license": "proprietary",
-  "source": "https://github.com/kpn-puppet/puppet-kpn-advanced_security_policy",
-  "project_page": "https://github.com/kpn-puppet/puppet-kpn-advanced_security_policy",
-  "issues_url": "https://github.com/kpn-puppet/puppet-kpn-advanced_security_policy/issues",
+  "source": "https://github.tooling.kpn.org/kpn-puppet-forge/puppet-kpn-advanced_security_policy",
+  "project_page": "https://github.tooling.kpn.org/kpn-puppet-forge/puppet-kpn-advanced_security_policy",
+  "issues_url": "https://github.tooling.kpn.org/kpn-puppet-forge/puppet-kpn-advanced_security_policy/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs/scheduled_task",
+      "version_requirement": ">=4.6.0 <5.0.0"
+    }
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "windows",
-      "operatingsystemrelease": [ "2012", "2012 R2", "2016", "2019", "2022" ]
+      "operatingsystemrelease": [
+        "2012",
+        "2012 R2",
+        "2016",
+        "2019",
+        "2022"
+      ]
     }
   ],
-  "dependencies": [
-    { "name": "puppetlabs/scheduled_task", "version_requirement": ">=4.6.0 <5.0.0" }
-  ]
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 7.24 < 9.0.0"
+    }
+  ],
+  "tags": [
+    "kpn_quality_label: B",
+    "kpn_module_owner: Product Owner Platforms",
+    "kpn_module_support: Puppet Development Team",
+    "windows",
+    "advanced_security_policy"
+  ],
+  "pdk-version": "3.0.0",
+  "template-url": "ssh://git@github.tooling.kpn.org/team-puppet-modulebouw/pdk_templates#main",
+  "template-ref": "heads/main-0-g75ee08a"
 }

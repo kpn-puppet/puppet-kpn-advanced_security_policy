@@ -4,11 +4,11 @@
 
 require 'puppet_x/asp/security_policy'
 
-Puppet::Type.type(:advanced_security_policy).provide(:lgpo) do
-  TEMP_FILE = 'C:\\windows\\temp\\lgpotemp.txt'
-  REGISTRY_FILE_MACHINE = 'C:\\Windows\\System32\\GroupPolicy\\Machine\\Registry.pol'
-  REGISTRY_FILE_USER = 'C:\\Windows\\System32\\GroupPolicy\\User\\Registry.pol'
+TEMP_FILE = 'C:\\windows\\temp\\lgpotemp.txt'
+REGISTRY_FILE_MACHINE = 'C:\\Windows\\System32\\GroupPolicy\\Machine\\Registry.pol'
+REGISTRY_FILE_USER = 'C:\\Windows\\System32\\GroupPolicy\\User\\Registry.pol'
 
+Puppet::Type.type(:advanced_security_policy).provide(:lgpo) do
   confine    osfamily: :windows
   defaultfor osfamily: :windows
 
@@ -110,7 +110,6 @@ Puppet::Type.type(:advanced_security_policy).provide(:lgpo) do
 
         registry_key   = entry_array[1]
         value_name     = entry_array[2]
-        # action         = entry_array[3].upcase
         action         = entry_array[3]
         registry_value = "#{registry_key}\\#{value_name}"
         policy_desc, policy_values = AdvancedSecurityPolicy.find_mapping_from_policy_name(registry_value)
@@ -139,7 +138,6 @@ Puppet::Type.type(:advanced_security_policy).provide(:lgpo) do
 
         registry_key   = entry_array[1]
         value_name     = entry_array[2]
-        # action         = entry_array[3].upcase
         action         = entry_array[3]
         registry_value = "#{registry_key}\\#{value_name}"
         policy_desc, policy_values = AdvancedSecurityPolicy.find_mapping_from_policy_name(registry_value)

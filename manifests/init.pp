@@ -1,6 +1,5 @@
 # class advanced_security_policy 
 class advanced_security_policy {
-
   file { 'c:/Management/advanced_security':
     ensure => 'directory',
   }
