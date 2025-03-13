@@ -1,12 +1,12 @@
 {
   "name": "kpn-advanced_security_policy",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "author": "kpn",
   "summary": "This module sets Advanced Security Policy settings on Windows.",
   "license": "proprietary",
-  "source": "https://github.tooling.kpn.org/kpn-puppet-forge/puppet-kpn-advanced_security_policy",
-  "project_page": "https://github.tooling.kpn.org/kpn-puppet-forge/puppet-kpn-advanced_security_policy",
-  "issues_url": "https://github.tooling.kpn.org/kpn-puppet-forge/puppet-kpn-advanced_security_policy/issues",
+  "source": "https://github.com/kpn-puppet/puppet-kpn-advanced_security_policy",
+  "project_page": "https://github.com/kpn-puppet/puppet-kpn-advanced_security_policy",
+  "issues_url": "https://github.com/kpn-puppet/puppet-kpn-advanced_security_policy/issues",
   "dependencies": [
     {
       "name": "puppetlabs/scheduled_task",

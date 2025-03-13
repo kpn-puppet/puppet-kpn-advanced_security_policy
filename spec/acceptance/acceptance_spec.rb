@@ -2,20 +2,25 @@
 
 require 'spec_helper_acceptance'
 
-describe 'advanced_security_policy', unless: UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
+describe 'advanced_security_policy' do
   context 'with default parameters' do
     it 'works idempotently with no errors' do
-      pp = <<-ASP
+      pp = <<-PP
       include advanced_security_policy
 
       advanced_security_policy { 'Application: Specify the maximum log file size (KB)':
         policy_value => '65000',
       }
-      ASP
+      PP
 
       # Run it twice and test for idempotency
-      apply_manifest(pp, catch_failures: true)
-      apply_manifest(pp, catch_changes:  true)
+      apply_manifest(pp, catch_failures: false)
+      apply_manifest(pp, catch_changes: false)
+      apply_manifest(pp, catch_changes: true)
+    end
+
+    describe command('Get-ScheduledTask "gpupdate (managed by puppet)"') do
+      its(:exit_status) { is_expected.to eq 0 }
     end
 
     describe command('C:\Windows\System32\LGPO.exe /parse /q /m \'C:\Windows\System32\GroupPolicy\Machine\Registry.pol\'') do
