@@ -1,6 +1,6 @@
 {
   "name": "kpn-advanced_security_policy",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "author": "kpn",
   "summary": "This module sets Advanced Security Policy settings on Windows.",
   "license": "proprietary",
