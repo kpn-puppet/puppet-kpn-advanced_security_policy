@@ -4,7 +4,7 @@
 
 require 'puppet_x/asp/security_policy'
 
-TEMP_FILE = 'C:\\windows\\temp\\lgpotemp.txt'
+ADVANCED_TEMP = 'C:\\windows\\temp\\lgpotemp.txt'
 REGISTRY_FILE_MACHINE = 'C:\\Windows\\System32\\GroupPolicy\\Machine\\Registry.pol'
 REGISTRY_FILE_USER = 'C:\\Windows\\System32\\GroupPolicy\\User\\Registry.pol'
 
@@ -40,13 +40,13 @@ Puppet::Type.type(:advanced_security_policy).provide(:lgpo) do
     action = (resource[:action] == 'DELETE') ? 'DELETE' : "#{reg_type}:#{policy_value}"
 
     self.class.write_setting_to_tempfile(configuration, registry_key, value_name, action)
-    securitypol('/t', TEMP_FILE)
+    securitypol('/t', ADVANCED_TEMP)
 
     @property_hash = resource.to_hash
   end
 
   def self.write_setting_to_tempfile(configuration, registry_key, value_name, action)
-    out_file = File.new(TEMP_FILE, 'w')
+    out_file = File.new(ADVANCED_TEMP, 'w')
     out_file.puts(configuration.to_s)
     out_file.puts(registry_key.to_s)
     out_file.puts(value_name.to_s)

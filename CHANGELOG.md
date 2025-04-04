@@ -1,5 +1,9 @@
 # Changelog for Advanced Security Policy
 
+2025-03-14 Release 4.1.1
+
+- Adjust variable name in provider advanced_security_policy
+
 2025-01-23 Release 4.1.0
 
 - update module to pe8 and pdk version to 3.4.0
