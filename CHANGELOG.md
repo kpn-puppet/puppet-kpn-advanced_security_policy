@@ -1,5 +1,11 @@
 # Changelog for Advanced Security Policy
 
+2025-03-13 Release 4.1.2
+
+- Add new policies:
+  - 'Configure security policy processing: Do not apply during periodic background processing'
+  - 'Configure registry policy processing: Process even if the Group Policy objects have not changed'
+
 2025-03-14 Release 4.1.1
 
 - Adjust variable name in provider advanced_security_policy

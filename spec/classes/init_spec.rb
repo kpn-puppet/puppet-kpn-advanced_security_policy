@@ -10,6 +10,7 @@ describe 'advanced_security_policy', if: RUBY_PLATFORM =~ %r{cygwin|mswin|mingw|
 
       it { is_expected.to compile }
       it { is_expected.to contain_class('advanced_security_policy') }
+      it { is_expected.to contain_file('C:/Management') }
       it { is_expected.to contain_file('C:/Management/advanced_security') }
       it { is_expected.to contain_exec('backup registry.pol') }
       it { is_expected.to contain_file('C:/Windows/System32/LGPO.exe') }
