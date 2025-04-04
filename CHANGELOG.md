@@ -1,5 +1,36 @@
 # Changelog for Advanced Security Policy
 
+2025-04-01 Release 4.1.3
+
+- Add new policies:
+  - Computer
+    - 'Configure multicast DNS (mDNS) protocol'
+    - 'Turn off default IPv6 DNS Servers'
+    - 'Audit client does not support encryption'
+    - 'Audit client does not support signing'
+    - 'LanmanServer: Audit insecure guest logon'
+    - 'Enable authentication rate limiter'
+    - 'LanmanServer: Enable remote mailslots'
+    - 'LanmanServer: Mandate the minimum version of SMB'
+    - 'Set authentication rate limiter delay (milliseconds)'
+    - 'LanmanWorkstation: Audit insecure guest logon'
+    - 'Audit server does not support encryption'
+    - 'Audit server does not support signing'
+    - 'LanmanWorkstation: Enable remote mailslots'
+    - 'LanmanWorkstation: Mandate the minimum version of SMB'
+    - 'Require Encryption'
+    - 'Configure Windows protected print'
+    - 'Block NetBIOS-based discovery for domain controller location'
+    - 'Configure SAM change password RPC methods policy'
+    - 'Not allow per-user unsigned packages to install by default (requires explicitly allow per install)'
+    - 'Enable App Installer Local Archive Malware Scan Override'
+    - 'Enable App Installer Microsoft Store Source Certificate Validation Bypass'
+    - 'Enable Windows Package Manager command line interfaces'
+    - 'Restrict clipboard transfer from server to client'
+    - 'Turn on Basic feed authentication over HTTP'
+  - User
+    - 'Turn off Spotlight collection on Desktop'
+
 2025-03-13 Release 4.1.2
 
 - Add new policies:
