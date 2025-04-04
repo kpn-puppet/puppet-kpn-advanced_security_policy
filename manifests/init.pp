@@ -1,13 +1,17 @@
-# class advanced_security_policy 
+# class advanced_security_policy
 class advanced_security_policy {
-  file { 'C:/Management/advanced_security':
+  $backup_directory = 'C:/Management/advanced_security'
+
+  ensure_resource('file', 'C:/Management', { 'ensure' => 'directory' })
+
+  file { $backup_directory:
     ensure => 'directory',
   }
 
   exec { 'backup registry.pol':
-    command => 'powershell Copy-Item C:/Windows/System32/GroupPolicy/Machine/Registry.pol C:/Management/advanced_security/Registry.pol',
+    command => "powershell Copy-Item C:/Windows/System32/GroupPolicy/Machine/Registry.pol ${backup_directory}/Registry.pol",
     path    => 'C:/Windows/System32/WindowsPowerShell/v1.0',
-    creates => 'C:/Management/advanced_security/Registry.pol',
+    creates => "${backup_directory}/Registry.pol",
     # onlyif  => 'powershell Test-Path C:/Windows/System32/GroupPolicy/Machine/Registry.pol',
   }
 

@@ -15,6 +15,7 @@ describe 'advanced_security_policy' do
 
       # Run it twice and test for idempotency
       apply_manifest(pp, catch_failures: false)
+      apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: false)
       apply_manifest(pp, catch_changes: true)
     end
